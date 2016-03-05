@@ -20,7 +20,7 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
 
-public class MainActivity extends Activity implements SensorEventListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener/*, com.google.android.gms.location.LocationListener*/ {
+public class MainActivity extends Activity implements SensorEventListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener {
 
     private TextView yawVal, pitchVal, rollVal;
     private TextView latitude, longitude;
@@ -91,15 +91,15 @@ public class MainActivity extends Activity implements SensorEventListener, Googl
     protected void onResume() {
         super.onResume();
         mSensorManager.registerListener(this,mSensor, SensorManager.SENSOR_DELAY_NORMAL);
-//        if(mGoogleApiClient.isConnected())
-//            startLocationUpdates();
+        if(mGoogleApiClient.isConnected())
+            startLocationUpdates();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         mSensorManager.unregisterListener(this);
-//        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
     }
 
     @Override
@@ -140,15 +140,16 @@ public class MainActivity extends Activity implements SensorEventListener, Googl
             longitude.setText(String.valueOf(currentLoc.getLongitude()));
         }
 
-//        startLocationUpdates();
+        createLocationRequest();
+        startLocationUpdates();
 
     }
 
-//    protected void startLocationUpdates() {
-//        LocationServices.FusedLocationApi.requestLocationUpdates(
-//                mGoogleApiClient, locRequest, this);
-//
-//    }
+    protected void startLocationUpdates() {
+        LocationServices.FusedLocationApi.requestLocationUpdates(
+                mGoogleApiClient, locRequest, this);
+
+    }
 
     protected void createLocationRequest() {
         locRequest = new LocationRequest();
@@ -167,11 +168,11 @@ public class MainActivity extends Activity implements SensorEventListener, Googl
 
     }
 
-//    @Override
-//    public void onLocationChanged(Location location) {
-//        currentLoc = location;
-//        latitude.setText(String.valueOf(currentLoc.getLatitude()));
-//        longitude.setText(String.valueOf(currentLoc.getLongitude()));
-//    }
+    @Override
+    public void onLocationChanged(Location location) {
+        currentLoc = location;
+        latitude.setText(String.valueOf(currentLoc.getLatitude()));
+        longitude.setText(String.valueOf(currentLoc.getLongitude()));
+    }
 
 }

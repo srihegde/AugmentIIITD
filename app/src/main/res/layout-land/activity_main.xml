@@ -23,7 +23,6 @@
         android:text="Pitch:"
         android:textSize="20dp"
         android:id="@+id/pitch"
-        android:layout_marginTop="48dp"
         android:layout_below="@+id/yawVal"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -34,7 +33,6 @@
         android:text="Roll:"
         android:textSize="20dp"
         android:id="@+id/roll"
-        android:layout_marginTop="49dp"
         android:layout_below="@+id/pitchVal"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -74,22 +72,21 @@
         android:layout_height="wrap_content"
         android:text="Latitude:"
         android:id="@+id/latitude"
+        android:layout_marginTop="42dp"
+        android:textSize="20dp"
         android:layout_below="@+id/rollVal"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="87dp"
-        android:textSize="20dp" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Longitude:"
         android:id="@+id/longitude"
-        android:layout_marginTop="37dp"
+        android:textSize="20dp"
         android:layout_below="@+id/latitude"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="20dp" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
