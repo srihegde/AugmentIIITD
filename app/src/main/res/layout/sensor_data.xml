@@ -1,0 +1,122 @@
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:id="@+id/main">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yaw:"
+            android:textSize="20dp"
+            android:textColor="@android:color/secondary_text_dark_nodisable"
+            android:id="@+id/yaw"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="yawVal"
+            android:id="@+id/yawVal"
+            android:textSize="20dp"
+            android:textColor="@android:color/secondary_text_dark_nodisable"
+            android:layout_below="@+id/yaw"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="pitchVal"
+            android:textSize="20dp"
+            android:textColor="@android:color/secondary_text_dark_nodisable"
+            android:id="@+id/pitchVal"
+            android:layout_below="@+id/pitch"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pitch:"
+            android:textSize="20dp"
+            android:textColor="@android:color/secondary_text_dark_nodisable"
+            android:id="@+id/pitch"
+            android:layout_marginTop="48dp"
+            android:layout_below="@+id/yawVal"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Roll:"
+            android:textSize="20dp"
+            android:textColor="@android:color/secondary_text_dark_nodisable"
+            android:id="@+id/roll"
+            android:layout_marginTop="49dp"
+            android:layout_below="@+id/pitchVal"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="rollValue"
+            android:textSize="20dp"
+            android:textColor="@android:color/secondary_text_dark_nodisable"
+            android:id="@+id/rollVal"
+            android:layout_below="@+id/roll"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Latitude:"
+            android:id="@+id/latitude"
+            android:textColor="@android:color/secondary_text_dark_nodisable"
+            android:layout_below="@+id/rollVal"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="87dp"
+            android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Longitude:"
+            android:id="@+id/longitude"
+            android:layout_marginTop="37dp"
+            android:textColor="@android:color/secondary_text_dark_nodisable"
+            android:layout_below="@+id/latitude"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/latVal"
+            android:layout_alignBottom="@+id/latitude"
+            android:textSize="20dp"
+            android:textColor="@android:color/secondary_text_dark_nodisable"
+            android:layout_alignRight="@+id/yaw"
+            android:layout_alignEnd="@+id/yaw" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/longVal"
+            android:textColor="@android:color/secondary_text_dark_nodisable"
+            android:layout_alignTop="@+id/longitude"
+            android:layout_alignLeft="@+id/latVal"
+            android:layout_alignStart="@+id/latVal"
+            android:textSize="20dp" />
+
+</RelativeLayout>

@@ -2,6 +2,7 @@ package com.example.srinidhi.augmentiiitd;
 
 import android.app.Activity;
 import android.content.Context;
+import android.hardware.Camera;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -12,6 +13,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -31,13 +36,30 @@ public class MainActivity extends Activity implements SensorEventListener, Googl
 
     GoogleApiClient mGoogleApiClient;
     private Location currentLoc;
-
     LocationRequest locRequest;
+
+
+    private Camera mCamera;
+    private CameraPreview camPreview;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_main);
+
+        mCamera = getCameraInstance();
+        camPreview = new CameraPreview(this, mCamera);
+
+        FrameLayout frameLayout = (FrameLayout) findViewById(R.id.camera_preview);
+        frameLayout.addView(camPreview);
+
+        RelativeLayout relativeLayoutSensorsData = (RelativeLayout) findViewById(R.id.sensors_data_layout);
+        relativeLayoutSensorsData.bringToFront();
 
         yawVal = (TextView)findViewById(R.id.yawVal) ;
         pitchVal = (TextView)findViewById(R.id.pitchVal) ;
@@ -56,6 +78,17 @@ public class MainActivity extends Activity implements SensorEventListener, Googl
                     .addApi(LocationServices.API)
                     .build();
         }
+    }
+
+
+    private static Camera getCameraInstance() {
+        Camera c = null;
+        try {
+            c = Camera.open();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return c;
     }
 
 
@@ -98,8 +131,16 @@ public class MainActivity extends Activity implements SensorEventListener, Googl
     @Override
     protected void onPause() {
         super.onPause();
+        releaseCamera();
         mSensorManager.unregisterListener(this);
         LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+    }
+
+    private void releaseCamera() {
+        if (mCamera != null){
+            mCamera.release();
+            mCamera = null;
+        }
     }
 
     @Override
@@ -174,5 +215,4 @@ public class MainActivity extends Activity implements SensorEventListener, Googl
         latitude.setText(String.valueOf(currentLoc.getLatitude()));
         longitude.setText(String.valueOf(currentLoc.getLongitude()));
     }
-
 }
